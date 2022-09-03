@@ -9,22 +9,27 @@ namespace InventoryManagementSystem
             InitializeComponent();
             this.is_admin = is_admin;
             this.user = user;
-
-            if (!is_admin)
-            {
-                btnUsers.Visible = false;
-                btnProducts.Visible = false;
-            }
-
-            userLabel.Text = user;
-
             
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            
-            openChildForm(new Forms.MainDash());
+
+            if (!is_admin)
+            {
+                // if user is not admin
+                btnUsers.Visible = false;
+                btnProducts.Visible = false;
+                lblTitle.Text = "Staff Dashboard";
+            }
+            else
+            {
+                // if user is admin
+                lblTitle.Text = "Admin Dashboard";
+                openChildForm(new Forms.MainDash());
+            }
+
+            userLabel.Text = user;
         }
 
         private Form activeForm = null;
@@ -77,6 +82,11 @@ namespace InventoryManagementSystem
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void userLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

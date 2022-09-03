@@ -155,14 +155,32 @@ namespace InventoryManagementSystem.Forms
         // Event Handler for Process Sale Button
         private void button1_Click_1(object sender, EventArgs e)
         {
-            // save order
-            int saveSales = Sale.AddSale(basketWithCode);
-
-            // pass basket data to Invoice Form
+            // get the total price
             String total = lblTotal.Text;
 
-            Form invoiceForm = new Reciept(basket, total);
-            invoiceForm.Show();
+            // check payment and change
+            decimal paid = numericPaid.Value;
+
+
+            int saveSales;
+            if (paid >= decimal.Parse(total))
+            {
+                numericChange.Value = paid - decimal.Parse(total);
+
+                // save order
+                saveSales = Sale.AddSale(basketWithCode);
+
+                // pass total price and basket data to Invoice Form
+
+                Form receiptForm = new Reciept(basket, total);
+                receiptForm.Show();
+            }
+            else
+            {
+                saveSales = 0;
+            }
+
+            
 
             if (saveSales > 0)
             {
@@ -177,10 +195,6 @@ namespace InventoryManagementSystem.Forms
 
                 textBoxBarcode.Enabled = true;
                 textBoxProduct.Enabled = true;
-
-
-
-
 
 
                 // update product quantities

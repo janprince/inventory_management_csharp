@@ -98,10 +98,11 @@
             // 
             // btnCompleteOrder
             // 
+            this.btnCompleteOrder.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCompleteOrder.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCompleteOrder.Location = new System.Drawing.Point(472, 445);
+            this.btnCompleteOrder.Location = new System.Drawing.Point(466, 451);
             this.btnCompleteOrder.Name = "btnCompleteOrder";
-            this.btnCompleteOrder.Size = new System.Drawing.Size(338, 216);
+            this.btnCompleteOrder.Size = new System.Drawing.Size(350, 216);
             this.btnCompleteOrder.TabIndex = 2;
             this.btnCompleteOrder.Text = "Process Sale";
             this.btnCompleteOrder.UseVisualStyleBackColor = true;
@@ -212,7 +213,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Red;
+            this.panel3.BackColor = System.Drawing.Color.Teal;
             this.panel3.Controls.Add(this.numericPaid);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
