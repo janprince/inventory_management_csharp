@@ -3,9 +3,22 @@ namespace InventoryManagementSystem
     public partial class MainWindow : Form
     {
         private bool is_admin = false;
-        public MainWindow()
+        private string user;
+        public MainWindow(bool is_admin, string user)
         {
             InitializeComponent();
+            this.is_admin = is_admin;
+            this.user = user;
+
+            if (!is_admin)
+            {
+                btnUsers.Visible = false;
+                btnProducts.Visible = false;
+            }
+
+            userLabel.Text = user;
+
+            
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -59,6 +72,11 @@ namespace InventoryManagementSystem
         {
             lblTitle.Text = "Sales";
             openChildForm(new Forms.Sales());
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

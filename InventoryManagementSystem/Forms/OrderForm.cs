@@ -13,7 +13,10 @@ namespace InventoryManagementSystem.Forms
     public partial class OrderForm : Form
     {
         private List<Product> products = Product.GetProducts();
+
+        // product names with quantity
         private Dictionary<string, int> basket = new Dictionary<string, int>();
+        // product name with quantity
         private Dictionary<string, int> basketWithCode = new Dictionary<string, int>();
         public OrderForm()
         {
@@ -112,7 +115,7 @@ namespace InventoryManagementSystem.Forms
             else basket.Add(name, quantity);
 
             // add to basketWithCode
-            if (basketWithCode.Keys.Contains(code)) basket[code] += quantity;
+            if (basketWithCode.Keys.Contains(code)) basketWithCode[code] += quantity;
             else basketWithCode.Add(code, quantity);
 
             // update basket
@@ -149,10 +152,18 @@ namespace InventoryManagementSystem.Forms
             lblTotal.Text = total_price.ToString();
         }
 
+        // Event Handler for Process Sale Button
         private void button1_Click_1(object sender, EventArgs e)
         {
             // save order
             int saveSales = Sale.AddSale(basketWithCode);
+
+            // pass basket data to Invoice Form
+            String total = lblTotal.Text;
+
+            Form invoiceForm = new Reciept(basket, total);
+            invoiceForm.Show();
+
             if (saveSales > 0)
             {
 

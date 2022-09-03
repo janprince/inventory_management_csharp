@@ -22,10 +22,10 @@ namespace InventoryManagementSystem.Forms
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
 
-            int authenticatUser = User.AuthenticateUser(username, password);
-            if (authenticatUser == 1)
+            Dictionary<string, string> authenticatUser = User.AuthenticateUser(username, password);
+            if (authenticatUser["auth"] == "1")
             {
-                Form main = new MainWindow();
+                Form main = new MainWindow(is_admin: authenticatUser["role"].ToLower() == "admin", user: authenticatUser["name"]);
                 main.Show();
             }
             //this.Close();
@@ -37,6 +37,26 @@ namespace InventoryManagementSystem.Forms
         private void LoginWindow_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBoxClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

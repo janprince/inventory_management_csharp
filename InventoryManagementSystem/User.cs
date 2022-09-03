@@ -155,9 +155,14 @@ namespace InventoryManagementSystem
             return 1;
         }
 
-        public static int AuthenticateUser(string username, string password)
+        public static Dictionary<string, string> AuthenticateUser(string username, string password)
         {
             bool authenticated = false;
+            string role = "";
+            string name = "";
+            // dictionary
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
             try
             {
                 // Opening a connection to MySql server
@@ -168,7 +173,7 @@ namespace InventoryManagementSystem
 
 
                 // SQL Query to update user where id=id
-                string sqlquery = "SELECT `username`, `password` FROM `user`  WHERE (`username` = ?username);";
+                string sqlquery = "SELECT `name`, `password`, `role` FROM `user`  WHERE (`username` = ?username);";
                 MySqlCommand cmd = new MySqlCommand(sqlquery, conn);
                 cmd.Parameters.Add("?username", MySqlDbType.VarChar).Value = username;
                 MySqlDataReader rdr = cmd.ExecuteReader();
@@ -176,18 +181,27 @@ namespace InventoryManagementSystem
                  
                 while (rdr.Read())
                 {
-                    if (MD5Hash(password) == rdr[1].ToString()) authenticated = true;
+                    if (MD5Hash(password) == rdr[1].ToString()) authenticated = true; role = rdr[2].ToString(); name = rdr[0].ToString(); 
                 }
                 rdr.Close();
+
+                
+                result.Add("role", role);
+                result.Add("name", name);
+
+                if (authenticated)
+                {
+                    result.Add("auth", "1");
+                    return result;
+                } else return result;
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return -1;
+                return result;
             }
 
-            if(authenticated) return 1; else return 0;
         }
 
         public static string MD5Hash(string input)

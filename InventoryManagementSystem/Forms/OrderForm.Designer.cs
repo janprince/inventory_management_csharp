@@ -65,7 +65,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.mySqlCommand1 = new MySqlConnector.MySqlCommand();
-            this.panel10.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -91,7 +90,6 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel10.Controls.Add(this.btnCompleteOrder);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel10.Location = new System.Drawing.Point(0, 667);
             this.panel10.Name = "panel10";
@@ -100,11 +98,12 @@
             // 
             // btnCompleteOrder
             // 
-            this.btnCompleteOrder.Location = new System.Drawing.Point(27, 6);
+            this.btnCompleteOrder.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCompleteOrder.Location = new System.Drawing.Point(472, 445);
             this.btnCompleteOrder.Name = "btnCompleteOrder";
-            this.btnCompleteOrder.Size = new System.Drawing.Size(425, 58);
+            this.btnCompleteOrder.Size = new System.Drawing.Size(338, 216);
             this.btnCompleteOrder.TabIndex = 2;
-            this.btnCompleteOrder.Text = "Complete Order";
+            this.btnCompleteOrder.Text = "Process Sale";
             this.btnCompleteOrder.UseVisualStyleBackColor = true;
             this.btnCompleteOrder.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -476,13 +475,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1205, 737);
+            this.Controls.Add(this.btnCompleteOrder);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel10);
             this.Name = "OrderForm";
             this.Text = "OrderForm";
             this.Load += new System.EventHandler(this.OrderForm_Load);
-            this.panel10.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
